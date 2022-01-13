@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import logo from './trivia.png';
+import React from 'react';
 import Routes from './Routes/Routes';
 import './App.css';
 
