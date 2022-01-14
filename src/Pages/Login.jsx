@@ -28,7 +28,7 @@ export default function Login() {
     const USER_TOKEN = await getToken();
     const { data: { token } } = USER_TOKEN;
 
-    const hashGravatar = generateHash();
+    const hashGravatar = generateHash(loginEmail);
 
     // Envia o token para a store
     dispatch(saveTokenInStore(token));
@@ -42,7 +42,7 @@ export default function Login() {
         {
           name: loginNickName,
           score: 0,
-          picture: `https://br.gravatar.com/site/implement/${hashGravatar}/`,
+          picture: `https://www.gravatar.com/avatar/${hashGravatar}`,
         },
       ),
     );

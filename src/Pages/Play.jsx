@@ -1,9 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function Play() {
   return (
-    <section>
-      <h1>Jogo</h1>
-    </section>
+    <>
+      <Header />
+      <section>
+        <h1>Jogo</h1>
+      </section>
+    </>
   );
 }
