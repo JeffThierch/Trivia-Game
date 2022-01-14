@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import getQuestions from '../services/getQuestions';
+import getToken from '../services/getToken';
+// import { saveTokenInStore } from '../actions';
 
 export default function Play() {
-  const [quiz, setQuiz] = useState('');
+  const [quiz, setQuiz] = useState([]);
   const { token } = useSelector((state) => state);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    const getQuiz = async () => {
-      const result = await getQuestions(token);
-      // console.log(result);
-      setQuiz(result);
+    const getResults = async () => {
+      let results = await getQuestions(token);
+      const EXPIRED_TOKEN_CODE = 3;
+      if (results.responseCode === EXPIRED_TOKEN_CODE) {
+        const { data: { token: newToken } } = await getToken();
+        results = await getQuestions(newToken);
+      }
+      setQuiz(results.dataResults);
     };
-    getQuiz();
+    getResults();
   }, [token]);
 
   return (
     <section>
       {/* Categoria */}
       <div>
-        <h1 data-testid="question-category">category</h1>
+        <h1 data-testid="question-category">{quiz.category}</h1>
       </div>
       {/* Perguntas que vem da API */}
       <div>
