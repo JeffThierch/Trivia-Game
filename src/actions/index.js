@@ -1,6 +1,6 @@
-export const SUBMIT_PLAYER = 'SUBMIT_PLAYER';
+export const CHANGE_TOKEN = 'CHANGE_TOKEN';
 
-export const addEmail = (payload) => ({
-  type: SUBMIT_PLAYER,
-  player: payload,
+export const saveTokenInStore = (token) => ({
+  type: CHANGE_TOKEN,
+  payload: token,
 });
