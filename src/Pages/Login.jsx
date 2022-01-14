@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import getQuestions from '../services/getQuestions';
+import generateHash from '../services/generateHash';
 
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginNickName, setLoginNickName] = useState('');
   const [isDisabled, setisDisabled] = useState(true);
+
+  const history = useHistory();
 
   useEffect(() => {
     const validForms = () => {
@@ -15,22 +19,28 @@ export default function Login() {
     setisDisabled(validForms());
   }, [loginEmail, loginNickName]);
 
-  async function playButton() {
+  async function handleClick() {
     const returnedData = await getQuestions();
+    const gravatar = generateHash();
     console.log(returnedData);
-    
-    //Adiciona o token ao localStorage
+    console.log(gravatar);
+
+    // Adiciona o token ao localStorage
     localStorage.setItem('token', returnedData.token);
 
-    //Adiciona o ranking ao localStorage
+    // Adiciona o ranking ao localStorage
     localStorage.setItem(
-      'ranking',
-      [{
-        name: loginNickName,
-        score: 0,
-        picture: 'as'
-      }]
-    )
+      'ranking', JSON.stringify(
+        {
+          name: loginNickName,
+          score: 0,
+          picture: gravatar,
+        },
+      ),
+    );
+    console.log(localStorage.getItem('ranking'));
+
+    history.push('/jefferson');
   }
 
   return (
@@ -73,7 +83,7 @@ export default function Login() {
           data-testid="btn-play"
           disabled={ isDisabled }
           type="button"
-          onClick={ playButton() }
+          onClick={ handleClick }
         >
           Play
         </button>
