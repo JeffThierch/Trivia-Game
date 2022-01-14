@@ -19,11 +19,9 @@ export default function Login() {
     setisDisabled(validForms());
   }, [loginEmail, loginNickName]);
 
-  async function handleClick() {
+  async function playButton() {
     const returnedData = await getQuestions();
     const gravatar = generateHash();
-    console.log(returnedData);
-    console.log(gravatar);
 
     // Adiciona o token ao localStorage
     localStorage.setItem('token', returnedData.token);
@@ -38,9 +36,13 @@ export default function Login() {
         },
       ),
     );
-    console.log(localStorage.getItem('ranking'));
 
+    // Redireciona a página
     history.push('/jefferson');
+  }
+
+  function settingsButton() {
+    history.push('/configuracoes')
   }
 
   return (
@@ -61,7 +63,7 @@ export default function Login() {
           />
         </label>
       </div>
-      {/* INOPUT NickName */}
+      {/* INPUT NickName */}
       <div>
         <label
           htmlFor="playerName"
@@ -83,9 +85,19 @@ export default function Login() {
           data-testid="btn-play"
           disabled={ isDisabled }
           type="button"
-          onClick={ handleClick }
+          onClick={ playButton }
         >
           Play
+        </button>
+      </div>
+      {/* SettingsButton */}
+      <div>
+        <button
+          data-testid="btn-settings"
+          type="button"
+          onClick={ settingsButton }
+        >
+          Configurações
         </button>
       </div>
     </form>
