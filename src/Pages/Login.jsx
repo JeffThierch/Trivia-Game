@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import getQuestions from '../services/getQuestions';
+import { useDispatch } from 'react-redux';
+import { saveTokenInStore } from '../actions';
+import getToken from '../services/getToken';
 import generateHash from '../services/generateHash';
 
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginNickName, setLoginNickName] = useState('');
   const [isDisabled, setisDisabled] = useState(true);
+
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -16,15 +20,21 @@ export default function Login() {
       const isvalid = regex.test(loginEmail);
       return !(isvalid && (loginNickName.length > 0));
     };
+
     setisDisabled(validForms());
   }, [loginEmail, loginNickName]);
 
-  async function playButton() {
-    const returnedData = await getQuestions();
-    const gravatar = generateHash();
+  const playButton = async () => {
+    const USER_TOKEN = await getToken();
+    const { data: { token } } = USER_TOKEN;
+
+    const hashGravatar = generateHash();
+
+    // Envia o token para a store
+    dispatch(saveTokenInStore(token));
 
     // Adiciona o token ao localStorage
-    localStorage.setItem('token', returnedData.token);
+    localStorage.setItem('token', token);
 
     // Adiciona o ranking ao localStorage
     localStorage.setItem(
@@ -32,18 +42,18 @@ export default function Login() {
         {
           name: loginNickName,
           score: 0,
-          picture: gravatar,
+          picture: `https://br.gravatar.com/site/implement/${hashGravatar}/`,
         },
       ),
     );
 
     // Redireciona a página
-    history.push('/jefferson');
-  }
+    history.push('/play');
+  };
 
-  function settingsButton() {
-    history.push('/configuracoes')
-  }
+  const settingsButton = () => {
+    history.push('/settings');
+  };
 
   return (
     <form action="">

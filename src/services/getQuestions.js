@@ -1,14 +1,7 @@
-import getToken from './getToken';
-
-const getQuestions = async () => {
-  const USER_TOKEN = await getToken();
-
-  const { data: { token } } = USER_TOKEN;
-
+const getQuestions = async (token) => {
   const URL = 'https://opentdb.com/api.php?amount=5&token=';
 
   const returnedData = {
-    token,
     dataResults: [],
     responseCode: 0,
     error: '',
