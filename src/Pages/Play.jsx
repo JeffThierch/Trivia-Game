@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import getQuestions from '../services/getQuestions';
 import getToken from '../services/getToken';
 // import { saveTokenInStore } from '../actions';
+import Header from '../components/Header';
 
 export default function Play() {
   const [quiz, setQuiz] = useState([]);
@@ -23,8 +24,10 @@ export default function Play() {
   }, [token]);
 
   return (
-    <section>
-      {/* Categoria */}
+    <>
+      <Header />
+      <section>
+         {/* Categoria */}
       <div>
         <h1 data-testid="question-category">{quiz.category}</h1>
       </div>
@@ -40,6 +43,7 @@ export default function Play() {
           </li>
         </ul>
       </div>
-    </section>
+      </section>
+    </>
   );
 }
