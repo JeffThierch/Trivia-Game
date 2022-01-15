@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import getQuestions from '../services/getQuestions';
 import getToken from '../services/getToken';
 import '../styles/Play.css';
@@ -20,6 +21,8 @@ export default function Play() {
   const { token } = useSelector((state) => state);
   const { id } = useSelector((state) => state.player);
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   useEffect(() => {
     const getResults = async () => {
@@ -84,6 +87,12 @@ export default function Play() {
     };
   }, [showCorrectAnswers, timer]);
 
+  useEffect(() => {
+    if (currentQuestion === NUMBER_OF_ANSWERS) {
+      history.push('/feedback');
+    }
+  }, [currentQuestion, history]);
+
   const nextQuestionClick = () => {
     changeShowCorrectAnswers(false);
     changeTimer(MAXIMUN_SECONDS_TIMER);
@@ -121,17 +130,16 @@ export default function Play() {
   };
 
   const selectAnswer = (target) => {
-    console.log(target.id);
     if (target.id === 'correct-answer') {
       attRankPoins();
     }
+
     changeShowCorrectAnswers(true);
   };
 
   /* Os elementos com as alternativas incorretas devem possuir o atributo data-testid
   com o valor wrong-answer-${index}, com ${index} iniciando com o valor 0 */
   let indexOfWrongQuestions = 0;
-
   return (
     <>
       <Header />
