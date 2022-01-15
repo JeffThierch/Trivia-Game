@@ -27,13 +27,19 @@ export default function Header() {
         alt=""
         data-testid="header-profile-picture"
       />
-      <p data-testid="header-player-name">
-        { name }
-      </p>
-      <p>{ picture }</p>
-      <p data-testid="header-score">
-        { score }
-      </p>
+      <div>
+        <p>Nickname</p>
+        <p data-testid="header-player-name">
+          { name }
+        </p>
+      </div>
+      <div>
+        <p>Pontuação</p>
+        <p data-testid="header-score">
+          { score }
+        </p>
+      </div>
+      <hr />
     </header>
   );
 }
