@@ -38,7 +38,7 @@ export default function Play() {
   const selectAnswer = () => {
     changeShowCorrectAnswers(true);
     /* changeQuestion(currentQuestion + 1); */
-  };
+
 
   useEffect(() => {
     if (quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS) {
@@ -119,6 +119,7 @@ export default function Play() {
                   type="button"
                   onClick={ selectAnswer }
                   className={ showCorrectAnswers ? 'wrong-answer' : '' }
+
                 >
                   { answer.answer }
                 </button>
