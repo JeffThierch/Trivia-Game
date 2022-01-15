@@ -37,8 +37,7 @@ export default function Play() {
 
   const selectAnswer = () => {
     changeShowCorrectAnswers(true);
-    /* changeQuestion(currentQuestion + 1); */
-
+  };
 
   useEffect(() => {
     if (quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS) {
@@ -71,6 +70,11 @@ export default function Play() {
   com o valor wrong-answer-${index}, com ${index} iniciando com o valor 0 */
   let indexOfWrongQuestions = 0;
 
+  const nextQuestionClick = () => {
+    changeShowCorrectAnswers(false);
+    changeQuestion(currentQuestion + 1);
+  };
+
   return (
     <>
       <Header />
@@ -95,7 +99,7 @@ export default function Play() {
           >
             {answerRandomized.map((answer, index) => {
               if (answer.isCorrect) {
-              // Pergunta correta
+              // Resposta correta
                 return (
                   <button
                     data-testid="correct-answer"
@@ -111,7 +115,7 @@ export default function Play() {
 
               indexOfWrongQuestions += 1;
 
-              // Perguntas erradas
+              // Respostas erradas
               return (
                 <button
                   data-testid={ `wrong-answer-${indexOfWrongQuestions - 1}` }
@@ -126,8 +130,18 @@ export default function Play() {
               );
             })}
           </div>
+          {showCorrectAnswers && (
+            <button
+              type="button"
+              onClick={ nextQuestionClick }
+              data-testid="btn-next"
+            >
+              Next
+            </button>
+          )}
         </section>
       )}
+
     </>
   );
 }
