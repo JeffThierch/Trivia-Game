@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import getQuestions from '../services/getQuestions';
 import getToken from '../services/getToken';
+import '../styles/Play.css';
 // import { saveTokenInStore } from '../actions';
 import Header from '../components/Header';
 
 export default function Play() {
   const [quiz, setQuiz] = useState([]);
   const [currentQuestion, changeQuestion] = useState(0);
+  const [showCorrectAnswers, changeShowCorrectAnswers] = useState(false);
   const { token } = useSelector((state) => state);
   // const dispatch = useDispatch();
 
@@ -26,9 +28,10 @@ export default function Play() {
     getResults();
   }, [token]);
 
-  const buttonOnClick = () => {
-    changeQuestion(currentQuestion + 1);
-  };
+  const selectAnswer = () => {
+    changeShowCorrectAnswers(true);
+    /* changeQuestion(currentQuestion + 1); */
+
 
   const numbOfQuestions = 5;
 
@@ -82,7 +85,8 @@ export default function Play() {
                     data-testid="correct-answer"
                     key={ index }
                     type="button"
-                    onClick={ buttonOnClick }
+                    onClick={ selectAnswer }
+                    className={ showCorrectAnswers ? 'correct-answer' : '' }
                   >
                     { answer.answer }
                   </button>
@@ -95,7 +99,9 @@ export default function Play() {
                   data-testid={ `wrong-answer-${indexOfWrongQuestions - 1}` }
                   key={ index }
                   type="button"
-                  onClick={ buttonOnClick }
+                  onClick={ selectAnswer }
+                  className={ showCorrectAnswers ? 'wrong-answer' : '' }
+
                 >
                   { answer.answer }
                 </button>);

@@ -39,7 +39,6 @@ export default function Header() {
           { score }
         </p>
       </div>
-      <hr />
     </header>
   );
 }
