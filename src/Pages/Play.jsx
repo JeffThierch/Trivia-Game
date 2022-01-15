@@ -27,22 +27,22 @@ export default function Play() {
     <>
       <Header />
       <section>
-         {/* Categoria */}
-      <div>
-        <h1 data-testid="question-category">{quiz.category}</h1>
-      </div>
-      {/* Perguntas que vem da API */}
-      <div>
-        <h3 data-testid="question-text">perguntas</h3>
-      </div>
-      {/* Alternativas da API */}
-      <div>
-        <ul>
-          <li>
-            teste
-          </li>
-        </ul>
-      </div>
+        {/* Categoria */}
+        <div>
+          <h1 data-testid="question-category">{quiz.category}</h1>
+        </div>
+        {/* Perguntas que vem da API */}
+        <div>
+          <h3 data-testid="question-text">perguntas</h3>
+        </div>
+        {/* Alternativas da API */}
+        <div>
+          <ul>
+            <li>
+              teste
+            </li>
+          </ul>
+        </div>
       </section>
     </>
   );

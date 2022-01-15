@@ -30,7 +30,6 @@ export default function Header() {
       <p data-testid="header-player-name">
         { name }
       </p>
-      <p>{ picture }</p>
       <p data-testid="header-score">
         { score }
       </p>
