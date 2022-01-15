@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { saveTokenInStore } from '../actions';
+import { saveTokenInStore, savePlayerInfo } from '../actions';
 import getToken from '../services/getToken';
 import generateHash from '../services/generateHash';
 
@@ -37,17 +37,32 @@ export default function Login() {
     localStorage.setItem('token', token);
 
     // Adiciona o ranking ao localStorage
-    localStorage.setItem(
-      'ranking', JSON.stringify(
-        {
-          name: loginNickName,
-          score: 0,
-          picture: `https://www.gravatar.com/avatar/${hashGravatar}`,
-        },
-      ),
-    );
+    const newUserObj = {
+      name: loginNickName,
+      score: 0,
+      picture: `https://www.gravatar.com/avatar/${hashGravatar}`,
+    };
 
-    // Redireciona a página
+    if (JSON.parse(localStorage.getItem('ranking'))) {
+      const storage = JSON.parse(localStorage.getItem('ranking'));
+
+      newUserObj.id = storage.length;
+
+      localStorage.setItem('ranking', JSON.stringify([...storage, newUserObj]));
+    } else {
+      newUserObj.id = 0;
+
+      localStorage.setItem(
+        'ranking', JSON.stringify(
+          [newUserObj],
+        ),
+      );
+    }
+
+    newUserObj.email = loginEmail;
+
+    dispatch(savePlayerInfo(newUserObj));
+
     history.push('/play');
   };
 

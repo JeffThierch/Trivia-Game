@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import getQuestions from '../services/getQuestions';
 import getToken from '../services/getToken';
 import '../styles/Play.css';
-// import { saveTokenInStore } from '../actions';
+import { changeScoreInStore } from '../actions';
 import Header from '../components/Header';
+import difficultyModifier from '../helpers/data';
 
 export default function Play() {
   const NUMBER_OF_ANSWERS = 5;
   const EXPIRED_TOKEN_CODE = 3;
+  const MAXIMUN_SECONDS_TIMER = 30;
 
   const [quiz, setQuiz] = useState([]);
   const [currentQuestion, changeQuestion] = useState(0);
   const [showCorrectAnswers, changeShowCorrectAnswers] = useState(false);
   const [answerRandomized, changeAnswers] = useState([]);
+  const [timer, changeTimer] = useState(MAXIMUN_SECONDS_TIMER);
   const { token } = useSelector((state) => state);
-  // const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getResults = async () => {
@@ -34,11 +38,6 @@ export default function Play() {
 
     getResults();
   }, [token]);
-
-  const selectAnswer = () => {
-    changeShowCorrectAnswers(true);
-    /* changeQuestion(currentQuestion + 1); */
-
 
   useEffect(() => {
     if (quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS) {
@@ -67,6 +66,68 @@ export default function Play() {
     }
   }, [currentQuestion, quiz]);
 
+  useEffect(() => {
+    const ONE_SECOND = 1000;
+    let timerInterval;
+    if (timer === 0) {
+      changeShowCorrectAnswers(true);
+    }
+
+    if (!showCorrectAnswers) {
+      timerInterval = setInterval(() => {
+        changeTimer((prevTimer) => prevTimer - 1);
+      }, ONE_SECOND);
+    }
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [showCorrectAnswers, timer]);
+
+  const nextQuestionClick = () => {
+    changeShowCorrectAnswers(false);
+    changeTimer(MAXIMUN_SECONDS_TIMER);
+    changeQuestion(currentQuestion + 1);
+  };
+
+  const calculateRank = () => {
+    const BASE_POINTS = 10;
+    const { difficulty } = quiz[currentQuestion];
+
+    const modPoints = difficultyModifier[difficulty];
+
+    const pointsGain = BASE_POINTS + (timer * modPoints);
+
+    return pointsGain;
+  };
+
+  const attRankPoins = () => {
+    const totalQuestionPoint = calculateRank();
+
+    const storage = JSON.parse(localStorage.getItem('ranking'));
+    const playerStorage = storage.filter((player) => player.id === id);
+
+    playerStorage[0].score += totalQuestionPoint;
+
+    dispatch(changeScoreInStore(storage[0].score));
+
+    const newStorage = storage.map((player) => {
+      if (player.id === playerStorage[0].id) {
+        return playerStorage[0];
+      }
+      return player;
+    });
+    localStorage.setItem('ranking', JSON.stringify(newStorage));
+  };
+
+  const selectAnswer = (target) => {
+    console.log(target.id);
+    if (target.id === 'correct-answer') {
+      attRankPoins();
+    }
+    changeShowCorrectAnswers(true);
+  };
+
   /* Os elementos com as alternativas incorretas devem possuir o atributo data-testid
   com o valor wrong-answer-${index}, com ${index} iniciando com o valor 0 */
   let indexOfWrongQuestions = 0;
@@ -83,6 +144,9 @@ export default function Play() {
               {quiz[currentQuestion].category}
             </h1>
           </div>
+          <div>
+            <p>{timer}</p>
+          </div>
           {/* Perguntas que vem da API */}
           <div>
             <h3>Pergunta</h3>
@@ -95,13 +159,15 @@ export default function Play() {
           >
             {answerRandomized.map((answer, index) => {
               if (answer.isCorrect) {
-              // Pergunta correta
+              // Resposta correta
                 return (
                   <button
                     data-testid="correct-answer"
                     key={ index }
                     type="button"
-                    onClick={ selectAnswer }
+                    id="correct-answer"
+                    onClick={ ({ target }) => selectAnswer(target) }
+                    disabled={ showCorrectAnswers }
                     className={ showCorrectAnswers ? 'correct-answer' : '' }
                   >
                     { answer.answer }
@@ -111,13 +177,14 @@ export default function Play() {
 
               indexOfWrongQuestions += 1;
 
-              // Perguntas erradas
+              // Respostas erradas
               return (
                 <button
                   data-testid={ `wrong-answer-${indexOfWrongQuestions - 1}` }
                   key={ index }
                   type="button"
-                  onClick={ selectAnswer }
+                  onClick={ ({ target }) => selectAnswer(target) }
+                  disabled={ showCorrectAnswers }
                   className={ showCorrectAnswers ? 'wrong-answer' : '' }
 
                 >
@@ -126,8 +193,18 @@ export default function Play() {
               );
             })}
           </div>
+          {showCorrectAnswers && (
+            <button
+              type="button"
+              onClick={ nextQuestionClick }
+              data-testid="btn-next"
+            >
+              Next
+            </button>
+          )}
         </section>
       )}
+
     </>
   );
 }
