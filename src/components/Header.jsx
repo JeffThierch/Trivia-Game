@@ -1,24 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
-  const getRankingFromLocalStorage = () => {
-    const gravatar = JSON.parse(localStorage.getItem('ranking'));
-    if (!gravatar) {
-      localStorage.setItem(
-        'ranking', JSON.stringify(
-          {
-            name: '',
-            score: 0,
-            picture: '',
-          },
-        ),
-      );
-      return JSON.parse(localStorage.getItem('ranking'));
-    }
-    return gravatar;
+  const { id } = useSelector((state) => state.player);
+
+  const getRankingFromLocalStorage = (playerID) => {
+    const ranking = JSON.parse(localStorage.getItem('ranking'));
+    const playerRanking = ranking.filter((player) => player.id === playerID);
+    return playerRanking[0];
   };
 
-  const { name, score, picture } = getRankingFromLocalStorage();
+  const { name, score, picture } = getRankingFromLocalStorage(id);
 
   return (
     <header>

@@ -1,18 +1,41 @@
-import { CHANGE_TOKEN } from '../actions';
+import { CHANGE_TOKEN, CHANGE_SCORE, SAVE_PLAYER_INFO } from '../actions';
 
 // Cypress da erro caso tenha mais de um reducer, entao irei juntar todos eles nesse reducer
 
 const INITIAL_STATE = {
-  name: '',
-  assertions: 0,
-  score: 0,
-  gravatarEmail: '',
+  player: {
+    id: 0,
+    name: '',
+    assertions: 0,
+    score: 0,
+    gravatarEmail: '',
+  },
   token: '',
   data: [],
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case SAVE_PLAYER_INFO:
+    return {
+      ...state,
+      player: {
+        ...state.player,
+        id: action.payload.id,
+        name: action.payload.name,
+        score: action.payload.score,
+        gravatarEmail: action.payload.email,
+      },
+
+    };
+  case CHANGE_SCORE:
+    return {
+      ...state,
+      player: {
+        ...state.player,
+        score: action.payload,
+      },
+    };
   case CHANGE_TOKEN:
     return {
       ...state,
