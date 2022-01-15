@@ -31,7 +31,7 @@ export default function Play() {
   const selectAnswer = () => {
     changeShowCorrectAnswers(true);
     /* changeQuestion(currentQuestion + 1); */
-  };
+
 
   const numbOfQuestions = 5;
 
@@ -56,12 +56,9 @@ export default function Play() {
   com o valor wrong-answer-${index}, com ${index} iniciando com o valor 0 */
   let indexOfWrongQuestions = 0;
 
-  console.log(answers);
-
   return (
     <>
       <Header />
-
       {quiz.length === numbOfQuestions && currentQuestion < numbOfQuestions && (
         <section data-testid="uiui aiai">
           {/* Categoria */}
@@ -104,6 +101,7 @@ export default function Play() {
                   type="button"
                   onClick={ selectAnswer }
                   className={ showCorrectAnswers ? 'wrong-answer' : '' }
+
                 >
                   { answer.answer }
                 </button>);
