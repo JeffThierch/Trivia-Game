@@ -7,24 +7,31 @@ import '../styles/Play.css';
 import Header from '../components/Header';
 
 export default function Play() {
+  const NUMBER_OF_ANSWERS = 5;
+  const EXPIRED_TOKEN_CODE = 3;
+
   const [quiz, setQuiz] = useState([]);
   const [currentQuestion, changeQuestion] = useState(0);
   const [showCorrectAnswers, changeShowCorrectAnswers] = useState(false);
+  const [answerRandomized, changeAnswers] = useState([]);
   const { token } = useSelector((state) => state);
   // const dispatch = useDispatch();
 
   useEffect(() => {
     const getResults = async () => {
       let results = await getQuestions(token);
-      const EXPIRED_TOKEN_CODE = 3;
+
       if (results.responseCode === EXPIRED_TOKEN_CODE) {
         const {
           data: { token: newToken },
         } = await getToken();
+
         results = await getQuestions(newToken);
       }
+
       setQuiz(results.dataResults);
     };
+
     getResults();
   }, [token]);
 
@@ -33,24 +40,32 @@ export default function Play() {
     /* changeQuestion(currentQuestion + 1); */
 
 
-  const numbOfQuestions = 5;
+  useEffect(() => {
+    if (quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS) {
+      const {
+        correct_answer: correctAnswer,
+        incorrect_answers: incorrectAnswers,
+      } = quiz[currentQuestion];
 
-  // Create array of answers
-  const answers = [];
-  if (quiz.length === numbOfQuestions && currentQuestion < numbOfQuestions) {
-    const correctanswer = {
-      answer: quiz[currentQuestion].correct_answer,
-      correctanswer: true,
-    };
-    answers.push(correctanswer);
-    quiz[currentQuestion].incorrect_answers.forEach((incAnswer) => {
-      answers.push({ answer: incAnswer });
-    });
-  }
+      const correctAnswerObj = {
+        answer: correctAnswer,
+        isCorrect: true,
+      };
 
-  // Embaralhar array
-  const magicNumber = 0.5;
-  answers.sort(() => magicNumber - Math.random());
+      const incorrectAnswersArray = incorrectAnswers.map(
+        (answer) => ({ answer }),
+      );
+
+      const answersArray = [correctAnswerObj, ...incorrectAnswersArray];
+
+      // Essa funcao foi retirada do site : https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+      // E tem como funcao embaralhar o array de forma aleatorio
+      const chanceOfMove = 0.5;
+      const randomizedAnswers = answersArray.sort(() => chanceOfMove - Math.random());
+
+      changeAnswers(randomizedAnswers);
+    }
+  }, [currentQuestion, quiz]);
 
   /* Os elementos com as alternativas incorretas devem possuir o atributo data-testid
   com o valor wrong-answer-${index}, com ${index} iniciando com o valor 0 */
@@ -59,7 +74,8 @@ export default function Play() {
   return (
     <>
       <Header />
-      {quiz.length === numbOfQuestions && currentQuestion < numbOfQuestions && (
+
+      {quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS && (
         <section data-testid="uiui aiai">
           {/* Categoria */}
           <div>
@@ -77,8 +93,8 @@ export default function Play() {
             id="answer-div"
             data-testid="answer-options"
           >
-            {answers.map((answer, index) => {
-              if (answer.correctanswer) {
+            {answerRandomized.map((answer, index) => {
+              if (answer.isCorrect) {
               // Pergunta correta
                 return (
                   <button
@@ -92,7 +108,9 @@ export default function Play() {
                   </button>
                 );
               }
+
               indexOfWrongQuestions += 1;
+
               // Perguntas erradas
               return (
                 <button
@@ -104,7 +122,8 @@ export default function Play() {
 
                 >
                   { answer.answer }
-                </button>);
+                </button>
+              );
             })}
           </div>
         </section>
