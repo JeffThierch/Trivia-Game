@@ -8,7 +8,7 @@ export default function Feedback() {
   const averageAnswers = 3;
   const history = useHistory();
 
-  const playAgainButton = () => {
+  const homePageButton = () => {
     history.push('/');
   };
 
@@ -46,7 +46,7 @@ export default function Feedback() {
         <button
           data-testid="btn-play-again"
           type="button"
-          onClick={ playAgainButton }
+          onClick={ homePageButton }
         >
           Play Again
         </button>
