@@ -1,6 +1,7 @@
 export const CHANGE_TOKEN = 'CHANGE_TOKEN';
 export const SAVE_PLAYER_INFO = 'SAVE_PLAYER_INFO';
 export const CHANGE_SCORE = 'CHANGE_SCORE';
+export const SUBMIT_CORRECT_ANSWERS = 'SUBMIT_CORRECT_ANSWERS';
 
 export const saveTokenInStore = (token) => ({
   type: CHANGE_TOKEN,
@@ -15,4 +16,9 @@ export const savePlayerInfo = (infos) => ({
 export const changeScoreInStore = (score) => ({
   type: CHANGE_SCORE,
   payload: score,
+});
+
+export const submitNumbOfCorrectAnswers = (correcAnswers) => ({
+  type: SUBMIT_CORRECT_ANSWERS,
+  payload: correcAnswers,
 });
