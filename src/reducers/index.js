@@ -52,7 +52,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
       player: {
         ...state.player,
         assertions: action.payload,
-      }
+      },
     };
   default:
     return state;
