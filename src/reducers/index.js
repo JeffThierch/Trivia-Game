@@ -1,4 +1,9 @@
-import { CHANGE_TOKEN, CHANGE_SCORE, SAVE_PLAYER_INFO } from '../actions';
+import {
+  CHANGE_TOKEN,
+  CHANGE_SCORE,
+  SAVE_PLAYER_INFO,
+  SUBMIT_CORRECT_ANSWERS,
+} from '../actions';
 
 // Cypress da erro caso tenha mais de um reducer, entao irei juntar todos eles nesse reducer
 
@@ -12,6 +17,7 @@ const INITIAL_STATE = {
   },
   token: '',
   data: [],
+  numbOfCorrectAnswers: 0,
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {
@@ -40,6 +46,11 @@ const rootReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       token: action.payload,
+    };
+  case SUBMIT_CORRECT_ANSWERS:
+    return {
+      ...state,
+      numbOfCorrectAnswers: action.payload,
     };
   default:
     return state;

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import getQuestions from '../services/getQuestions';
 import getToken from '../services/getToken';
 import '../styles/Play.css';
-import { changeScoreInStore } from '../actions';
+import { changeScoreInStore, submitNumbOfCorrectAnswers } from '../actions';
 import Header from '../components/Header';
 import difficultyModifier from '../helpers/data';
 
@@ -15,6 +15,7 @@ export default function Play() {
 
   const [quiz, setQuiz] = useState([]);
   const [currentQuestion, changeQuestion] = useState(0);
+  const [numbOfCorrectAnswers, increaseNumbOfCorrectAnswers] = useState(0);
   const [showCorrectAnswers, changeShowCorrectAnswers] = useState(false);
   const [answerRandomized, changeAnswers] = useState([]);
   const [timer, changeTimer] = useState(MAXIMUN_SECONDS_TIMER);
@@ -89,9 +90,10 @@ export default function Play() {
 
   useEffect(() => {
     if (currentQuestion === NUMBER_OF_ANSWERS) {
+      dispatch(submitNumbOfCorrectAnswers(numbOfCorrectAnswers));
       history.push('/feedback');
     }
-  }, [currentQuestion, history]);
+  }, [currentQuestion, history, numbOfCorrectAnswers, dispatch]);
 
   const nextQuestionClick = () => {
     changeShowCorrectAnswers(false);
@@ -119,7 +121,6 @@ export default function Play() {
     playerStorage[0].score += totalQuestionPoint;
 
     dispatch(changeScoreInStore(storage[0].score));
-
     const newStorage = storage.map((player) => {
       if (player.id === playerStorage[0].id) {
         return playerStorage[0];
@@ -132,6 +133,7 @@ export default function Play() {
   const selectAnswer = (target) => {
     if (target.id === 'correct-answer') {
       attRankPoins();
+      increaseNumbOfCorrectAnswers(numbOfCorrectAnswers + 1);
     }
 
     changeShowCorrectAnswers(true);
