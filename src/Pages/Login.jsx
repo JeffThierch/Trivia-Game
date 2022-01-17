@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { saveTokenInStore, savePlayerInfo } from '../actions';
 import getToken from '../services/getToken';
 import generateHash from '../services/generateHash';
+import Logo from '../img/trivia.png';
+import '../styles/Login.css'
 
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState('');
@@ -71,60 +73,163 @@ export default function Login() {
   };
 
   return (
-    <form action="">
-      {/* INPUT EMAIL */}
-      <div>
-        <label
-          htmlFor="inputEmaill"
-        >
-          Email address
-          <input
-            data-testid="input-gravatar-email"
-            id="inputEmaill"
-            onChange={ ({ target }) => setLoginEmail(target.value) }
-            placeholder="Enter your email"
-            type="email"
-            value={ loginEmail }
-          />
-        </label>
+    <div
+      className="
+      bg-body
+      card
+      mb-5
+      p-3
+      position-relative
+      rounded
+      shadow
+      start-50
+      top-50
+      translate-middle
+      w-75
+      "
+    >
+      <div
+        className="
+        align-items-center
+        d-flex
+        justify-content-center
+        mx-auto
+        w-50
+        h-50
+        "
+      >
+        <img
+        src={ Logo }
+        className="
+        card-img-top
+        "
+        alt="trivia-logo">
+        </img>
       </div>
-      {/* INPUT NickName */}
-      <div>
-        <label
-          htmlFor="playerName"
+      <form
+        className="
+        align-items-center
+        d-flex
+        flex-column
+        justify-content-center
+        m-2
+        p-2
+        "    
+      >
+        {/* INPUT EMAIL */}
+        <div
+          className="
+          align-items-center
+          d-flex
+          justify-content-center
+          mb-3
+          p-0
+          w-75
+          "
         >
-          NickName
-          <input
-            data-testid="input-player-name"
-            id="playerName"
-            value={ loginNickName }
-            onChange={ ({ target }) => setLoginNickName(target.value) }
-            placeholder="Enter your player name"
-            type="text"
-          />
-        </label>
-      </div>
-      {/* BTN PLAY */}
-      <div>
-        <button
-          data-testid="btn-play"
-          disabled={ isDisabled }
-          type="button"
-          onClick={ playButton }
+          <label
+            className="
+            d-flex
+            flex-column
+            p-0
+            w-75
+            "
+            htmlFor="inputEmaill"
+          >
+            Email address
+            <input
+              className="
+              form-control
+              p-1
+              "
+              data-testid="input-gravatar-email"
+              id="inputEmaill"
+              onChange={ ({ target }) => setLoginEmail(target.value) }
+              placeholder="Enter your email"
+              type="email"
+              value={ loginEmail }
+            />
+          </label>
+        </div>
+        {/* INPUT NickName */}
+        <div
+          className="
+          align-items-center
+          d-flex
+          justify-content-center
+          mb-3
+          p-0
+          w-75
+          "
         >
-          Play
-        </button>
-      </div>
-      {/* SettingsButton */}
-      <div>
-        <button
-          data-testid="btn-settings"
-          type="button"
-          onClick={ settingsButton }
+          <label
+            className="
+            d-flex
+            flex-column
+            p-0
+            w-75
+            "
+            htmlFor="playerName"
+          >
+            NickName
+            <input
+              className="
+              form-control
+              p-1
+              "
+              data-testid="input-player-name"
+              id="playerName"
+              onChange={ ({ target }) => setLoginNickName(target.value) }
+              placeholder="Enter your player name"
+              type="text"
+              value={ loginNickName }
+            />
+          </label>
+        </div>
+        {/* BTN PLAY */}
+        <div
+          className="
+          mb-3
+          bg-light
+          rounded-3
+          "
         >
-          Configurações
-        </button>
-      </div>
-    </form>
+          <button
+            className="
+            btn
+            btn-lg
+            px-5
+            py-1
+            border-3
+            btnPlay
+            "
+            data-testid="btn-play"
+            disabled={ isDisabled }
+            type="button"
+            onClick={ playButton }
+          >
+            Play
+          </button>
+        </div>
+        {/* SettingsButton */}
+        <div>
+          <button
+            className="
+            active
+            btn
+            btn-lg
+            px-4
+            py-1
+            btnCongig
+            "
+            data-testid="btn-settings"
+            type="button"
+            onClick={ settingsButton }
+          >
+            Configurações
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
