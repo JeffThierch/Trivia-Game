@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { saveTokenInStore, savePlayerInfo } from '../actions';
 import getToken from '../services/getToken';
 import generateHash from '../services/generateHash';
+import Logo from '../img/trivia.png';
+import '../styles/Login.css'
 
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState('');
@@ -86,6 +88,24 @@ export default function Login() {
       w-75
       "
     >
+      <div
+        className="
+        align-items-center
+        d-flex
+        justify-content-center
+        mx-auto
+        w-50
+        h-50
+        "
+      >
+        <img
+        src={ Logo }
+        className="
+        card-img-top
+        "
+        alt="trivia-logo">
+        </img>
+      </div>
       <form
         className="
         align-items-center
@@ -170,16 +190,18 @@ export default function Login() {
         <div
           className="
           mb-3
+          bg-light
+          rounded-3
           "
         >
           <button
             className="
-            active
             btn
             btn-lg
-            btn-outline-success
             px-5
             py-1
+            border-3
+            btnPlay
             "
             data-testid="btn-play"
             disabled={ isDisabled }
@@ -192,6 +214,14 @@ export default function Login() {
         {/* SettingsButton */}
         <div>
           <button
+            className="
+            active
+            btn
+            btn-lg
+            px-4
+            py-1
+            btnCongig
+            "
             data-testid="btn-settings"
             type="button"
             onClick={ settingsButton }

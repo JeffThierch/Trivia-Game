@@ -1,0 +1,82 @@
+/* referência do rainbow animated css https://codepen.io/nohoid/pen/kIfto */
+
+.wrapper { 
+background: linear-gradient(45deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 5s ease infinite;
+-z-animation: rainbow 5s ease infinite;
+-o-animation: rainbow 5s ease infinite;
+  animation: rainbow 5s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+/* Button Configurações */
+/* referência de estilo https://cssbuttons.io/detail/adamgiebl/giant-donkey-36 */
+.btnCongig {
+  background: #FBCA1F;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+}
+
+.btnCongig:hover {
+transform: translate(-0.05em, -0.05em);
+box-shadow: 0.15em 0.15em;
+}
+
+.btnCongig:active {
+transform: translate(0.05em, 0.05em);
+box-shadow: 0.05em 0.05em;
+}
+/* Button play */
+/* referência de estilo https://cssbuttons.io/detail/adamgiebl/giant-donkey-36 */
+.btnPlay {
+  background: #0c7711;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+}
+
+.btnPlay:hover {
+transform: translate(-0.05em, -0.05em);
+box-shadow: 0.15em 0.15em;
+}
+
+.btnPlay:active {
+transform: translate(0.05em, 0.05em);
+box-shadow: 0.05em 0.05em;
+cursor: pointer;
+}
+
+.btnPlay:disabled {
+  opacity: 0.75;
+  cursor:not-allowed;
+}
