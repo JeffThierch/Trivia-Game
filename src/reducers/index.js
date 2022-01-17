@@ -17,7 +17,6 @@ const INITIAL_STATE = {
   },
   token: '',
   data: [],
-  numbOfCorrectAnswers: 0,
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {
@@ -50,7 +49,10 @@ const rootReducer = (state = INITIAL_STATE, action) => {
   case SUBMIT_CORRECT_ANSWERS:
     return {
       ...state,
-      numbOfCorrectAnswers: action.payload,
+      player: {
+        ...state.player,
+        assertions: action.payload,
+      }
     };
   default:
     return state;
