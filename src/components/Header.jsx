@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import '../styles/Header.css'
+import '../styles/Header.css';
 
 export default function Header() {
   const { id } = useSelector((state) => state.player);
@@ -20,6 +20,8 @@ export default function Header() {
       flex-row
       justify-content-between
       align-items-center
+      bg-primary
+      text-white
       "
     >
       <div
@@ -44,7 +46,9 @@ export default function Header() {
           data-testid="header-profile-picture"
         />
         <p
-        className=""
+        className="
+        playerName
+        "
         data-testid="header-player-name"
         >
           { name }
