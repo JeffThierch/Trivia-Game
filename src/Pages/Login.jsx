@@ -71,60 +71,135 @@ export default function Login() {
   };
 
   return (
-    <form action="">
-      {/* INPUT EMAIL */}
-      <div>
-        <label
-          htmlFor="inputEmaill"
+    <div
+      className="
+      bg-body
+      card
+      mb-5
+      p-3
+      position-relative
+      rounded
+      shadow
+      start-50
+      top-50
+      translate-middle
+      w-75
+      "
+    >
+      <form
+        className="
+        align-items-center
+        d-flex
+        flex-column
+        justify-content-center
+        m-2
+        p-2
+        "    
+      >
+        {/* INPUT EMAIL */}
+        <div
+          className="
+          align-items-center
+          d-flex
+          justify-content-center
+          mb-3
+          p-0
+          w-75
+          "
         >
-          Email address
-          <input
-            data-testid="input-gravatar-email"
-            id="inputEmaill"
-            onChange={ ({ target }) => setLoginEmail(target.value) }
-            placeholder="Enter your email"
-            type="email"
-            value={ loginEmail }
-          />
-        </label>
-      </div>
-      {/* INPUT NickName */}
-      <div>
-        <label
-          htmlFor="playerName"
+          <label
+            className="
+            d-flex
+            flex-column
+            p-0
+            w-75
+            "
+            htmlFor="inputEmaill"
+          >
+            Email address
+            <input
+              className="
+              form-control
+              p-1
+              "
+              data-testid="input-gravatar-email"
+              id="inputEmaill"
+              onChange={ ({ target }) => setLoginEmail(target.value) }
+              placeholder="Enter your email"
+              type="email"
+              value={ loginEmail }
+            />
+          </label>
+        </div>
+        {/* INPUT NickName */}
+        <div
+          className="
+          align-items-center
+          d-flex
+          justify-content-center
+          mb-3
+          p-0
+          w-75
+          "
         >
-          NickName
-          <input
-            data-testid="input-player-name"
-            id="playerName"
-            value={ loginNickName }
-            onChange={ ({ target }) => setLoginNickName(target.value) }
-            placeholder="Enter your player name"
-            type="text"
-          />
-        </label>
-      </div>
-      {/* BTN PLAY */}
-      <div>
-        <button
-          data-testid="btn-play"
-          disabled={ isDisabled }
-          type="button"
-          onClick={ playButton }
+          <label
+            className="
+            d-flex
+            flex-column
+            p-0
+            w-75
+            "
+            htmlFor="playerName"
+          >
+            NickName
+            <input
+              className="
+              form-control
+              p-1
+              "
+              data-testid="input-player-name"
+              id="playerName"
+              onChange={ ({ target }) => setLoginNickName(target.value) }
+              placeholder="Enter your player name"
+              type="text"
+              value={ loginNickName }
+            />
+          </label>
+        </div>
+        {/* BTN PLAY */}
+        <div
+          className="
+          mb-3
+          "
         >
-          Play
-        </button>
-      </div>
-      {/* SettingsButton */}
-      <div>
-        <button
-          data-testid="btn-settings"
-          type="button"
-          onClick={ settingsButton }
-        >
-          Configurações
-        </button>
-      </div>
-    </form>
+          <button
+            className="
+            active
+            btn
+            btn-lg
+            btn-outline-success
+            px-5
+            py-1
+            "
+            data-testid="btn-play"
+            disabled={ isDisabled }
+            type="button"
+            onClick={ playButton }
+          >
+            Play
+          </button>
+        </div>
+        {/* SettingsButton */}
+        <div>
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ settingsButton }
+          >
+            Configurações
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
