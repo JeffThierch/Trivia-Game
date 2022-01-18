@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
 
 export default function Feedback() {
-  const { assertions } = useSelector((state) => state.player);
+  const { assertions, score } = useSelector((state) => state.player);
   const averageAnswers = 3;
   const history = useHistory();
 
@@ -33,7 +33,7 @@ export default function Feedback() {
       <section>
         <hr />
         <p data-testid="feedback-total-score">
-          { document.querySelector('[data-testid="header-score"]').innerHTML }
+          { score }
         </p>
         <p>Você acertou:</p>
         {/* Só passa no cypress se eu colocar 0, eu acho que é algum problema no teste,
