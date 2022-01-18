@@ -5,7 +5,7 @@ import { saveTokenInStore, savePlayerInfo } from '../actions';
 import getToken from '../services/getToken';
 import generateHash from '../services/generateHash';
 import Logo from '../img/trivia.png';
-import '../styles/Login.css'
+import '../styles/Login.css';
 
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState('');
@@ -99,12 +99,12 @@ export default function Login() {
         "
       >
         <img
-        src={ Logo }
-        className="
+          src={ Logo }
+          className="
         card-img-top
         "
-        alt="trivia-logo">
-        </img>
+          alt="trivia-logo"
+        />
       </div>
       <form
         className="
@@ -114,7 +114,7 @@ export default function Login() {
         justify-content-center
         m-2
         p-2
-        "    
+        "
       >
         {/* INPUT EMAIL */}
         <div

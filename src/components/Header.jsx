@@ -46,10 +46,10 @@ export default function Header() {
           data-testid="header-profile-picture"
         />
         <p
-        className="
+          className="
         playerName
         "
-        data-testid="header-player-name"
+          data-testid="header-player-name"
         >
           { name }
         </p>
