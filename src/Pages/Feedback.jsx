@@ -32,7 +32,7 @@ export default function Feedback() {
       <Header />
       <section>
         <hr />
-        <p data-testid="feedback-total-score" >
+        <p data-testid="feedback-total-score">
           { document.querySelector('[data-testid="header-score"]').innerHTML }
         </p>
         <p>Você acertou:</p>
