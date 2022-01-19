@@ -1,6 +1,6 @@
 @font-face {
   font-family: FunGames;
-  src: url(../font/FunGames.ttf);
+  src: url('../font/FunGames.ttf');
 }
 
 @font-face {
@@ -10,10 +10,10 @@
 
 .playerImg {
   border-style: outset;
-  width: 3.5rem;
   height: 3.5rem;
+  width: 3.5rem;
 }
 
-.playerName{
-  font-family: FunGames;
+.playerName {
+  font-family: FunGames , sans-serif;
 }
