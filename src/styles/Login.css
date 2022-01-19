@@ -1,5 +1,5 @@
 /* referência de estilo https://cssbuttons.io/detail/adamgiebl/giant-donkey-36 */
-.btnCongig {
+.btnConfig {
   background: #fbca1f;
   border: 3px solid black;
   border-radius: 0.4em;
@@ -10,12 +10,12 @@
   padding: 0.6em 1.3em;
 }
 
-.btnCongig:hover {
+.btnConfig:hover {
   box-shadow: 0.15em 0.15em;
   transform: translate(-0.05em, -0.05em);
 }
 
-.btnCongig:active {
+.btnConfig:active {
   box-shadow: 0.05em 0.05em;
   transform: translate(0.05em, 0.05em);
 }

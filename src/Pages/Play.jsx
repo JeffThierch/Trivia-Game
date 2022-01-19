@@ -7,6 +7,7 @@ import '../styles/Play.css';
 import { changeScoreInStore, submitNumbOfCorrectAnswers } from '../actions';
 import Header from '../components/Header';
 import difficultyModifier from '../helpers/data';
+import NotFound from '../components/NotFound';
 
 export default function Play() {
   const NUMBER_OF_ANSWERS = 5;
@@ -18,8 +19,11 @@ export default function Play() {
   const [numbOfCorrectAnswers, increaseNumbOfCorrectAnswers] = useState(0);
   const [showCorrectAnswers, changeShowCorrectAnswers] = useState(false);
   const [answerRandomized, changeAnswers] = useState([]);
+  const [wasFetched, setWasFetched] = useState(false);
   const [timer, changeTimer] = useState(MAXIMUN_SECONDS_TIMER);
+
   const { token } = useSelector((state) => state);
+  const settings = useSelector((state) => state.settings);
   const { id } = useSelector((state) => state.player);
   const dispatch = useDispatch();
 
@@ -27,21 +31,21 @@ export default function Play() {
 
   useEffect(() => {
     const getResults = async () => {
-      let results = await getQuestions(token);
+      let results = await getQuestions(token, settings);
 
       if (results.responseCode === EXPIRED_TOKEN_CODE) {
         const {
           data: { token: newToken },
         } = await getToken();
 
-        results = await getQuestions(newToken);
+        results = await getQuestions(newToken, settings);
       }
-
+      // console.log(results);
       setQuiz(results.dataResults);
+      setWasFetched(true);
     };
-
     getResults();
-  }, [token]);
+  }, [token, settings]);
 
   useEffect(() => {
     if (quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS) {
@@ -146,26 +150,41 @@ export default function Play() {
     <>
       <Header />
 
+      {quiz.length === 0 && wasFetched && <NotFound />}
       {quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS && (
-        <section data-testid="uiui aiai">
+        <section
+          className="h-100"
+        >
           {/* Categoria */}
-          <div>
-            <h1 data-testid="question-category">
+          <div
+            className="question-container"
+          >
+            <h1
+              data-testid="question-category"
+              className="question-category"
+            >
               {quiz[currentQuestion].category}
             </h1>
           </div>
-          <div>
+          <div
+            className="timer-container"
+          >
             <p>{timer}</p>
           </div>
           {/* Perguntas que vem da API */}
-          <div>
-            <h3>Pergunta</h3>
+          <div
+            className="quiz-container"
+          >
+            <h3>
+              Question
+            </h3>
             <p data-testid="question-text">{quiz[currentQuestion].question}</p>
           </div>
           {/* Alternativas da API */}
           <div
             id="answer-div"
             data-testid="answer-options"
+            className="answers-container"
           >
             {answerRandomized.map((answer, index) => {
               if (answer.isCorrect) {
@@ -204,13 +223,18 @@ export default function Play() {
             })}
           </div>
           {showCorrectAnswers && (
-            <button
-              type="button"
-              onClick={ nextQuestionClick }
-              data-testid="btn-next"
+            <div
+              className="btn-next-container"
             >
-              Next
-            </button>
+              <button
+                type="button"
+                className="my-auto"
+                onClick={ nextQuestionClick }
+                data-testid="btn-next"
+              >
+                Next Question
+              </button>
+            </div>
           )}
         </section>
       )}

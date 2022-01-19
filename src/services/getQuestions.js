@@ -1,5 +1,10 @@
-const getQuestions = async (token) => {
-  const URL = 'https://opentdb.com/api.php?amount=5&token=';
+const getQuestions = async (
+  token,
+  userSettings = { category: '', dificulty: '', type: '' },
+) => {
+  const { category, dificulty, type } = userSettings;
+  console.log(category, dificulty, type);
+  const URL = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${dificulty}&type=${type}&token=`;
 
   const returnedData = {
     dataResults: [],

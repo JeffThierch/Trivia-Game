@@ -55,7 +55,7 @@ export default function Header() {
         </p>
       </div>
       <div>
-        <p>Pontuação</p>
+        <p>Score</p>
         <p data-testid="header-score">
           { score }
         </p>

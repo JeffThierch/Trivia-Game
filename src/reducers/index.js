@@ -3,6 +3,7 @@ import {
   CHANGE_SCORE,
   SAVE_PLAYER_INFO,
   SUBMIT_CORRECT_ANSWERS,
+  SAVE_SETTINGS,
 } from '../actions';
 
 // Cypress da erro caso tenha mais de um reducer, entao irei juntar todos eles nesse reducer
@@ -17,6 +18,11 @@ const INITIAL_STATE = {
   },
   token: '',
   data: [],
+  settings: {
+    category: '',
+    dificulty: '',
+    type: '',
+  },
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {
@@ -52,6 +58,16 @@ const rootReducer = (state = INITIAL_STATE, action) => {
       player: {
         ...state.player,
         assertions: action.payload,
+      },
+    };
+  case SAVE_SETTINGS:
+    return {
+      ...state,
+      settings: {
+        ...state.settings,
+        category: action.payload.category,
+        dificulty: action.payload.dificulty,
+        type: action.payload.type,
       },
     };
   default:

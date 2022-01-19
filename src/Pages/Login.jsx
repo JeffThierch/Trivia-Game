@@ -138,10 +138,7 @@ export default function Login() {
           >
             Email address
             <input
-              className="
-              form-control
-              p-1
-              "
+              className="form-control p-1"
               data-testid="input-gravatar-email"
               id="inputEmaill"
               onChange={ ({ target }) => setLoginEmail(target.value) }
@@ -153,30 +150,15 @@ export default function Login() {
         </div>
         {/* INPUT NickName */}
         <div
-          className="
-          align-items-center
-          d-flex
-          justify-content-center
-          mb-3
-          p-0
-          w-75
-          "
+          className="align-items-center d-flex justify-content-center mb-3 p-0 w-75"
         >
           <label
-            className="
-            d-flex
-            flex-column
-            p-0
-            w-75
-            "
+            className="d-flex flex-column p-0 w-75"
             htmlFor="playerName"
           >
             NickName
             <input
-              className="
-              form-control
-              p-1
-              "
+              className="form-control p-1"
               data-testid="input-player-name"
               id="playerName"
               onChange={ ({ target }) => setLoginNickName(target.value) }
@@ -188,21 +170,10 @@ export default function Login() {
         </div>
         {/* BTN PLAY */}
         <div
-          className="
-          mb-3
-          bg-light
-          rounded-3
-          "
+          className="mb-3 bg-light rounded-3"
         >
           <button
-            className="
-            btn
-            btn-lg
-            px-5
-            py-1
-            border-3
-            btnPlay
-            "
+            className="btn btn-lg px-5 py-1 border-3 btnPlay"
             data-testid="btn-play"
             disabled={ isDisabled }
             type="button"
@@ -214,19 +185,12 @@ export default function Login() {
         {/* SettingsButton */}
         <div>
           <button
-            className="
-            active
-            btn
-            btn-lg
-            px-4
-            py-1
-            btnCongig
-            "
+            className="active btn btn-lg px-4 py-1 btnConfig"
             data-testid="btn-settings"
             type="button"
             onClick={ settingsButton }
           >
-            Configurações
+            Settings
           </button>
         </div>
       </form>
