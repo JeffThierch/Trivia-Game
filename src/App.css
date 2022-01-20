@@ -1,3 +1,13 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
 .App {
   text-align: center;
+  background: url("./img/back-to-school.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
 }
+

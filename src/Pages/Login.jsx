@@ -74,71 +74,35 @@ export default function Login() {
 
   return (
     <div
-      className="
-      bg-body
-      card
-      mb-5
-      p-3
-      position-relative
-      rounded
-      shadow
-      start-50
-      top-50
-      translate-middle
-      w-75
-      "
+      className="bg-body card mb-5 p-3 position-relative rounded shadow
+      start-50 top-50 translate-middle login-main-box"
     >
       <div
-        className="
-        align-items-center
-        d-flex
-        justify-content-center
-        mx-auto
-        w-50
-        h-50
-        "
+        className="align-items-center d-flex justify-content-center mx-auto "
       >
         <img
           src={ Logo }
-          className="
-        card-img-top
-        "
+          className="image-trivia"
           alt="trivia-logo"
         />
       </div>
       <form
-        className="
-        align-items-center
-        d-flex
-        flex-column
-        justify-content-center
-        m-2
-        p-2
-        "
+        className="align-items-center d-flex flex-column justify-content-center
+        p-2"
       >
         {/* INPUT EMAIL */}
         <div
-          className="
-          align-items-center
-          d-flex
-          justify-content-center
-          mb-3
-          p-0
-          w-75
-          "
+          className="align-items-center d-flex justify-content-center mb-3
+          p-0 w-75"
         >
           <label
-            className="
-            d-flex
-            flex-column
-            p-0
-            w-75
-            "
+            className="d-flex flex-column align-items-center p-0 justify-content-center
+            label-email-address"
             htmlFor="inputEmaill"
           >
             Email address
             <input
-              className="form-control p-1"
+              className="form-control p-1 input-email-address"
               data-testid="input-gravatar-email"
               id="inputEmaill"
               onChange={ ({ target }) => setLoginEmail(target.value) }
@@ -150,15 +114,17 @@ export default function Login() {
         </div>
         {/* INPUT NickName */}
         <div
-          className="align-items-center d-flex justify-content-center mb-3 p-0 w-75"
+          className="align-items-center d-flex align-items-center justify-content-center
+          mb-3 p-0 w-100"
         >
           <label
-            className="d-flex flex-column p-0 w-75"
+            className="d-flex flex-column align-items-center p-0 justify-content-center
+            label-nickname"
             htmlFor="playerName"
           >
             NickName
             <input
-              className="form-control p-1"
+              className="form-control p-1 input-nickname"
               data-testid="input-player-name"
               id="playerName"
               onChange={ ({ target }) => setLoginNickName(target.value) }
@@ -170,10 +136,10 @@ export default function Login() {
         </div>
         {/* BTN PLAY */}
         <div
-          className="mb-3 bg-light rounded-3"
+          className="mb-2 bg-light rounded-3"
         >
           <button
-            className="btn btn-lg px-5 py-1 border-3 btnPlay"
+            className="btn border-3 btn-play"
             data-testid="btn-play"
             disabled={ isDisabled }
             type="button"
@@ -185,7 +151,7 @@ export default function Login() {
         {/* SettingsButton */}
         <div>
           <button
-            className="active btn btn-lg px-4 py-1 btnConfig"
+            className="active btn btn-config"
             data-testid="btn-settings"
             type="button"
             onClick={ settingsButton }

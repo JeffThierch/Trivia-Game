@@ -58,8 +58,8 @@ export default function Settings() {
     >
       <h1 data-testid="settings-title">Settings</h1>
       <form
-        className="align-items-center d-flex flex-column justify-content-center
-        m-2 p-2"
+        className="align-items-center d-flex flex-column
+        justify-content-center m-2 p-2"
       >
         <div
           className="align-items-center d-flex justify-content-center
@@ -99,7 +99,9 @@ export default function Settings() {
               value={ dificulty }
               onChange={ ({ target }) => setDificulty(target.value) }
             >
-              { settingsDificulty.map(({ name: nameDificulty, id: idDificulty }) => (
+              { settingsDificulty.map(({
+                name: nameDificulty, id: idDificulty,
+              }) => (
                 <option key={ idDificulty } value={ idDificulty }>
                   { nameDificulty }
                 </option>
@@ -132,7 +134,8 @@ export default function Settings() {
         </div>
         <div>
           <button
-            className={ `active btn btn-lg px-4 py-1 ${token ? 'btnPlay' : 'btnConfig'}` }
+            className={ `active btn btn-lg px-4 py-1 ${token
+              ? 'btnPlay' : 'btnConfig'}` }
             type="button"
             onClick={ saveSettings }
           >

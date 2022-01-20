@@ -13,7 +13,6 @@ export default function Play() {
   const NUMBER_OF_ANSWERS = 5;
   const EXPIRED_TOKEN_CODE = 3;
   const MAXIMUN_SECONDS_TIMER = 30;
-
   const [quiz, setQuiz] = useState([]);
   const [currentQuestion, changeQuestion] = useState(0);
   const [numbOfCorrectAnswers, increaseNumbOfCorrectAnswers] = useState(0);
@@ -21,12 +20,10 @@ export default function Play() {
   const [answerRandomized, changeAnswers] = useState([]);
   const [wasFetched, setWasFetched] = useState(false);
   const [timer, changeTimer] = useState(MAXIMUN_SECONDS_TIMER);
-
   const { token } = useSelector((state) => state);
   const settings = useSelector((state) => state.settings);
   const { id } = useSelector((state) => state.player);
   const dispatch = useDispatch();
-
   const history = useHistory();
 
   useEffect(() => {
@@ -37,10 +34,8 @@ export default function Play() {
         const {
           data: { token: newToken },
         } = await getToken();
-
         results = await getQuestions(newToken, settings);
       }
-      // console.log(results);
       setQuiz(results.dataResults);
       setWasFetched(true);
     };
@@ -53,23 +48,18 @@ export default function Play() {
         correct_answer: correctAnswer,
         incorrect_answers: incorrectAnswers,
       } = quiz[currentQuestion];
-
       const correctAnswerObj = {
         answer: correctAnswer,
         isCorrect: true,
       };
-
       const incorrectAnswersArray = incorrectAnswers.map(
         (answer) => ({ answer }),
       );
-
       const answersArray = [correctAnswerObj, ...incorrectAnswersArray];
-
       // Essa funcao foi retirada do site : https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
       // E tem como funcao embaralhar o array de forma aleatorio
       const chanceOfMove = 0.5;
       const randomizedAnswers = answersArray.sort(() => chanceOfMove - Math.random());
-
       changeAnswers(randomizedAnswers);
     }
   }, [currentQuestion, quiz]);
@@ -80,13 +70,11 @@ export default function Play() {
     if (timer === 0) {
       changeShowCorrectAnswers(true);
     }
-
     if (!showCorrectAnswers) {
       timerInterval = setInterval(() => {
         changeTimer((prevTimer) => prevTimer - 1);
       }, ONE_SECOND);
     }
-
     return () => {
       clearInterval(timerInterval);
     };
@@ -104,26 +92,19 @@ export default function Play() {
     changeTimer(MAXIMUN_SECONDS_TIMER);
     changeQuestion(currentQuestion + 1);
   };
-
   const calculateRank = () => {
     const BASE_POINTS = 10;
     const { difficulty } = quiz[currentQuestion];
-
     const modPoints = difficultyModifier[difficulty];
-
     const pointsGain = BASE_POINTS + (timer * modPoints);
-
     return pointsGain;
   };
 
   const attRankPoins = () => {
     const totalQuestionPoint = calculateRank();
-
     const storage = JSON.parse(localStorage.getItem('ranking'));
     const playerStorage = storage.filter((player) => player.id === id);
-
     playerStorage[0].score += totalQuestionPoint;
-
     dispatch(changeScoreInStore(storage[0].score));
     const newStorage = storage.map((player) => {
       if (player.id === playerStorage[0].id) {
@@ -139,21 +120,18 @@ export default function Play() {
       attRankPoins();
       increaseNumbOfCorrectAnswers(numbOfCorrectAnswers + 1);
     }
-
     changeShowCorrectAnswers(true);
   };
-
   /* Os elementos com as alternativas incorretas devem possuir o atributo data-testid
   com o valor wrong-answer-${index}, com ${index} iniciando com o valor 0 */
   let indexOfWrongQuestions = 0;
   return (
     <>
       <Header />
-
       {quiz.length === 0 && wasFetched && <NotFound />}
       {quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS && (
         <section
-          className="h-100"
+          className=""
         >
           {/* Categoria */}
           <div
@@ -203,7 +181,6 @@ export default function Play() {
                   </button>
                 );
               }
-
               indexOfWrongQuestions += 1;
 
               // Respostas erradas
@@ -215,7 +192,6 @@ export default function Play() {
                   onClick={ ({ target }) => selectAnswer(target) }
                   disabled={ showCorrectAnswers }
                   className={ showCorrectAnswers ? 'wrong-answer' : '' }
-
                 >
                   { answer.answer }
                 </button>
@@ -238,7 +214,6 @@ export default function Play() {
           )}
         </section>
       )}
-
     </>
   );
 }

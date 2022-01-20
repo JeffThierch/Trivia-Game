@@ -1,5 +1,10 @@
+@font-face {
+  font-family: NineTsukiRegular;
+  src: url(../font/NineTsukiRegular.ttf);
+}
+
 /* referência de estilo https://cssbuttons.io/detail/adamgiebl/giant-donkey-36 */
-.btnConfig {
+.btn-config {
   background: #fbca1f;
   border: 3px solid black;
   border-radius: 0.4em;
@@ -7,15 +12,16 @@
   font-family: inherit;
   font-size: 18px;
   font-weight: 900;
-  padding: 0.6em 1.3em;
+  padding: 0;
+  width: 7.5rem;
 }
 
-.btnConfig:hover {
+.btn-config:hover {
   box-shadow: 0.15em 0.15em;
   transform: translate(-0.05em, -0.05em);
 }
 
-.btnConfig:active {
+.btn-config:active {
   box-shadow: 0.05em 0.05em;
   transform: translate(0.05em, 0.05em);
 }
@@ -23,7 +29,7 @@
 /* Button play */
 
 /* referência de estilo https://cssbuttons.io/detail/adamgiebl/giant-donkey-36 */
-.btnPlay {
+.btn-play {
   background: #0c7711;
   border: 3px solid black;
   border-radius: 0.4em;
@@ -31,21 +37,49 @@
   font-family: inherit;
   font-size: 18px;
   font-weight: 900;
-  padding: 0.6em 1.3em;
+  height: 2rem;
+  padding: 0;
+  width: 7.5rem;
 }
 
-.btnPlay:hover {
+.btn-lay:hover {
   box-shadow: 0.15em 0.15em;
   transform: translate(-0.05em, -0.05em);
 }
 
-.btnPlay:active {
+.btn-play:active {
   box-shadow: 0.05em 0.05em;
   cursor: pointer;
   transform: translate(0.05em, 0.05em);
 }
 
-.btnPlay:disabled {
+.btn-play:disabled {
   cursor: not-allowed;
   opacity: 0.75;
+}
+
+.login-main-box {
+  font-family: NineTsukiRegular;
+  border: 3px solid black;
+  width: 90%;
+  max-width: 25rem;
+}
+
+.label-nickname .label-email-address {
+  font-size: 5rem;
+  width: 100%;
+}
+
+.image-trivia{
+  width: 12rem;
+}
+
+.input-nickname{
+  height: 2rem;
+  width: 100%;
+}
+
+.input-email-address{
+  height: 2rem;
+  width: 100%;
 }

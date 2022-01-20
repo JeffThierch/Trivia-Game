@@ -15,48 +15,39 @@ export default function Header() {
 
   return (
     <header
-      className="
-      d-flex
-      flex-row
-      justify-content-between
-      align-items-center
-      bg-primary
-      text-white
-      "
+      className="d-flex flex-row justify-content-between align-items-center
+      bg-primary text-white main-header ws-100"
     >
       <div
-        className="
-        d-flex
-        flex-row
-        align-items-center
-        ms-3
-        "
+        className="d-flex flex-row align-items-center ms-2 bg-light
+        rounded-pill player-profile justify-content-center"
       >
         <img
-          className="
-          border
-          border-3
-          rounded-circle
-          my-0
-          me-3
-          playerImg
-          "
+          className="border border-3 rounded-circle my-0 player-img"
           src={ picture }
           alt=""
           data-testid="header-profile-picture"
         />
         <p
-          className="
-        playerName
-        "
+          className="player-name text-dark mx-1 my-0 w-100 text-start align-middle"
           data-testid="header-player-name"
         >
           { name }
         </p>
       </div>
-      <div>
-        <p>Score</p>
-        <p data-testid="header-score">
+      <div
+        className="d-flex flex-row align-items-center bg-light rounded-pill
+        me-2 player-score"
+      >
+        <p
+          className="text-dark mx-0 my-0 h-100 w-50 text-start align-middle"
+        >
+          Score
+        </p>
+        <p
+          data-testid="header-score"
+          className="text-dark mx-0 my-0 h-100 w-50 text-start align-middle"
+        >
           { score }
         </p>
       </div>

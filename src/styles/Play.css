@@ -7,33 +7,34 @@
 }
 
 .answers-container {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin: 0 1rem;
-  padding: 1rem;
+  padding: 1rem; */
   border: outset;
   height: 25%;
-  /* width: 100%; */
+  width: 100%;
 }
 
-.question-container{
+.question-container {
   height: 10%;
   width: 80%;
 }
+
 /* .question-category {} */
 
-.timer-container{
+.timer-container {
   height: 10%;
   width: 100%;
 }
 
-.quiz-container{
+.quiz-container {
   height: 40%;
   width: 100%;
 }
 
-.btn-next-container{
+.btn-next-container {
   display: flex;
   height: 15%;
   width: 100%;
