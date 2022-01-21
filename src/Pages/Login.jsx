@@ -48,7 +48,7 @@ export default function Login() {
     if (JSON.parse(localStorage.getItem('ranking'))) {
       const storage = JSON.parse(localStorage.getItem('ranking'));
 
-      newUserObj.id = storage.length;
+      newUserObj.id = (storage[storage.length - 1].id + 1);
 
       localStorage.setItem('ranking', JSON.stringify([...storage, newUserObj]));
     } else {

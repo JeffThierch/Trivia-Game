@@ -7,12 +7,6 @@
 }
 
 .answers-container {
-
-  /* display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 0 1rem;
-  padding: 1rem; */
   border: outset;
   height: 25%;
   width: 100%;
