@@ -177,7 +177,7 @@ export default function Play() {
             className="quiz-container"
           >
             <h3 className="question-title">
-              Question
+              {`Question ${currentQuestion + 1}/${NUMBER_OF_ANSWERS}`}
             </h3>
             <p data-testid="question-text">{quiz[currentQuestion].question}</p>
           </div>
