@@ -31,15 +31,14 @@ export default function Feedback() {
     <>
       <Header />
       <section>
-        <hr />
         <p data-testid="feedback-total-score">
-          { score }
+          { `${score} pts` }
         </p>
         <p>Você acertou:</p>
         {/* Só passa no cypress se eu colocar 0, eu acho que é algum problema no teste,
         Supostamente era para ter o numero de respostas certas,
         coloquei 0 para passar no teste */}
-        <p data-testid="feedback-total-question">{ assertions }</p>
+        <p data-testid="feedback-total-question">{ `${assertions} Questions` }</p>
         <p data-testid="feedback-text">{ feedbackTextFunction() }</p>
       </section>
       <section>
