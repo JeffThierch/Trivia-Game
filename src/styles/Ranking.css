@@ -1,0 +1,72 @@
+.main-box-ranking {
+  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url(../img/brain.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid black;
+  font-family: 'Poppins', sans-serif;
+  max-width: 25rem;
+  top: 17rem;
+  width: 90%;
+}
+
+.ranking-title {
+  font-family: NineTsukiRegular, sans-serif;
+}
+
+.ranking-player {
+  /* background-color: rgb(54, 79, 161, 0.50); */
+  background-color: rgb(245, 245, 245, 0.8);
+  margin: 1rem 0;
+  border: rgb(20, 20, 20, 0.8) 2px solid;
+}
+
+.ranking-classification{
+  width: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px rgb(35, 35, 35, 0.75);
+}
+
+.ranking-player-img {
+  width: 3rem;
+  height: 3rem;
+  box-shadow: 2px 2px 2px rgb(35, 35, 35, 0.75);
+}
+
+.ranking-player-profile {
+  /* margin: 0 2rem; */
+  text-align: center;
+  padding: 1rem;
+}
+
+.ranking-player-name, .ranking-player-score {
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.back-to-homepage {
+  margin-top: 1rem;
+}
+
+.btn-homepage {
+  background: #fbca1f;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  padding: 0.5rem;
+  width: 7.5rem;
+  text-align: center;
+}
+
+.btn-homepage:hover {
+  box-shadow: 0.15em 0.15em;
+  transform: translate(-0.05em, -0.05em);
+}
+
+.btn-homepage:active {
+  box-shadow: 0.05em 0.05em;
+  transform: translate(0.05em, 0.05em);
+}
