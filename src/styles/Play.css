@@ -13,7 +13,7 @@
   background-color: rgb(245, 245, 245);
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 90vh;
   justify-content: space-evenly;
   width: 100vw;
 }
@@ -21,7 +21,8 @@
 .question-container {
   align-items: center;
   display: flex;
-  min-height: 3rem;
+  /* min-height: 3rem; */
+  /* max-height: 5%; */
   justify-content:space-evenly;
   margin: 1rem auto;
   text-align: center;
@@ -37,7 +38,7 @@
 .timer-container {
   align-items: center;
   display: flex;
-  height: 10%;
+  /* max-height: 10%; */
   justify-content: center;
   margin: 0 auto;
   font-weight: bold;
@@ -64,7 +65,7 @@
   color: white;
   font-family: 'Poppins', sans-serif;
   font-size: medium;
-  max-height: 40%;
+  /* max-height: 35%; */
   min-height: 11.5rem;
   width: 80%;
   max-width: 20rem;
@@ -91,9 +92,8 @@
   font-family: 'Poppins', sans-serif;
   font-size: medium;
   grid-template-columns: 1fr 1fr;
-  min-height: 10rem;
-  margin: 0.5rem auto;
-  max-height: 35%;
+  /* min-height: 6.5rem; */
+  /* max-height: 35%; */
   max-width: 20rem;
   overflow: hidden;
   text-overflow: clip;
@@ -114,6 +114,7 @@
   padding: 0;
   text-overflow: clip;
   word-wrap:break-word;
+  min-height: 4rem;
 }
 .btn-option:hover {
   box-shadow: 0.15em 0.15em;
@@ -140,8 +141,10 @@
   align-items: center;
   justify-content: center;
   height: 10%;
-  margin: 0 auto;
-  width: 100%;
+  /* margin: 0 auto; */
+  max-width: 20rem;
+  width: 80%;
+  margin: 0.5rem auto;
 }
 
 .btn-next {
@@ -151,8 +154,9 @@
   box-shadow: 0.1em 0.1em;
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
-  padding: 0;
-  width: 7.5rem;
+  padding: 0.5rem 0;
+  width: 100%;
+  /* min-height: 5rem; */
 }
 
 .btn-next:hover {

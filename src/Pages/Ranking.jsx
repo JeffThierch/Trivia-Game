@@ -12,17 +12,24 @@ export default function Ranking() {
     history.push('/');
   };
 
+  const MAX_PLAYER_IN_RANKING = 5;
+
   return (
     <>
       <section>
         <h1 data-testid="ranking-title">Ranking</h1>
-        { storageRanking.map((player, index) => (
-          <div key={ index + 1 }>
-            <p data-testid={ `player-name-${index}` }>{ player.name }</p>
-            <p data-testid={ `player-score-${index}` }>{ player.score }</p>
-            <img src={ player.picture } alt={ player } />
-          </div>
-        ))}
+        { storageRanking.map((player, index) => {
+          if ((index + 1) <= MAX_PLAYER_IN_RANKING) {
+            return (
+              <div key={ index + 1 }>
+                <p data-testid={ `player-name-${index}` }>{ player.name }</p>
+                <p data-testid={ `player-score-${index}` }>{ player.score }</p>
+                <img src={ player.picture } alt={ player } />
+              </div>
+            );
+          }
+          return false;
+        })}
       </section>
       <section>
         <button

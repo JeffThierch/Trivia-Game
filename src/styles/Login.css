@@ -1,6 +1,6 @@
 @font-face {
   font-family: NineTsukiRegular;
-  src: url(../font/NineTsukiRegular.ttf);
+  src: url('../font/NineTsukiRegular.ttf');
 }
 
 /* referência de estilo https://cssbuttons.io/detail/adamgiebl/giant-donkey-36 */
@@ -59,9 +59,8 @@
 }
 
 .login-main-box {
-  font-family: NineTsukiRegular;
   border: 3px solid black;
-  width: 90%;
+  font-family: NineTsukiRegular , sans-serif;
   max-width: 25rem;
   background-color: rgba(255, 255, 255, 0.9);
 }
@@ -71,7 +70,7 @@
   width: 100%;
 }
 
-.image-trivia{
+.image-trivia {
   width: 12rem;
 }
 
