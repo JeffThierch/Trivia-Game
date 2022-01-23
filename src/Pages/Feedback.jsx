@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
+import '../styles/Feedback.css';
 
 export default function Feedback() {
   const { assertions, score } = useSelector((state) => state.player);
@@ -30,8 +31,10 @@ export default function Feedback() {
   return (
     <>
       <Header />
-      <section>
-        <hr />
+      <section
+        className="card mb-5 p-3 position-relative rounded shadow
+        start-50 top-50 translate-middle feedback-main-box"
+      >
         <p data-testid="feedback-total-score">
           { score }
         </p>
@@ -41,22 +44,22 @@ export default function Feedback() {
         coloquei 0 para passar no teste */}
         <p data-testid="feedback-total-question">{ assertions }</p>
         <p data-testid="feedback-text">{ feedbackTextFunction() }</p>
-      </section>
-      <section>
-        <button
-          data-testid="btn-play-again"
-          type="button"
-          onClick={ homePageButton }
-        >
-          Play Again
-        </button>
-        <button
-          data-testid="btn-ranking"
-          type="button"
-          onClick={ rankingButton }
-        >
-          Ranking
-        </button>
+        <div>
+          <button
+            data-testid="btn-play-again"
+            type="button"
+            onClick={ homePageButton }
+          >
+            Play Again
+          </button>
+          <button
+            data-testid="btn-ranking"
+            type="button"
+            onClick={ rankingButton }
+          >
+            Ranking
+          </button>
+        </div>
       </section>
     </>
   );
