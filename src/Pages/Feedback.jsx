@@ -33,19 +33,43 @@ export default function Feedback() {
       <Header />
       <section
         className="card mb-5 p-3 position-relative rounded shadow
-        start-50 top-50 translate-middle feedback-main-box"
+        start-50 translate-middle feedback-main-box"
       >
-        <p data-testid="feedback-total-score">
-          { score }
-        </p>
-        <p>Você acertou:</p>
+        <h1
+          className="fs-1 title-feedback"
+        >
+          Feedback
+        </h1>
+        <div
+          className="d-flex justify-content-center align-items-center
+          container-feedback-total-score"
+        >
+          <p
+            className="feedback-you-got"
+            data-testid="feedback-total-question"
+          >
+            { `You got: ${assertions} Questions right!` }
+          </p>
+        </div>
         {/* Só passa no cypress se eu colocar 0, eu acho que é algum problema no teste,
         Supostamente era para ter o numero de respostas certas,
-        coloquei 0 para passar no teste */}
-        <p data-testid="feedback-total-question">{ assertions }</p>
-        <p data-testid="feedback-text">{ feedbackTextFunction() }</p>
+      coloquei 0 para passar no teste */}
         <div>
+          <p data-testid="feedback-text">
+            { feedbackTextFunction() }
+          </p>
+          <p
+            data-testid="feedback-total-score"
+            className="feedback-total-score"
+          >
+            { `You got ${score} pts` }
+          </p>
+        </div>
+        <div
+          className="d-flex flex-column container-btn-feedback"
+        >
           <button
+            className="btn-play-again"
             data-testid="btn-play-again"
             type="button"
             onClick={ homePageButton }
@@ -53,6 +77,7 @@ export default function Feedback() {
             Play Again
           </button>
           <button
+            className="btn-ranking"
             data-testid="btn-ranking"
             type="button"
             onClick={ rankingButton }

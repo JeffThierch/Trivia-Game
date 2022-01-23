@@ -10,31 +10,19 @@
 
 .feedback-main-box {
   border: 3px solid black;
-  font-family: NineTsukiRegular , sans-serif;
+  font-family: 'Poppins', sans-serif;
   max-width: 25rem;
   width: 90%;
   background-color: rgba(255, 255, 255, 0.9);
+  top: 17rem;
 }
 
-.btn-ranking {
-  background: #fbca1f;
-  border: 3px solid black;
-  border-radius: 0.4em;
-  box-shadow: 0.1em 0.1em;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  padding: 0.5rem 0;
-  width: 100%;
+.title-feedback {
+  font-family: NineTsukiRegular, sans-serif;
 }
 
-.btn-ranking:hover {
-  box-shadow: 0.15em 0.15em;
-  transform: translate(-0.05em, -0.05em);
-}
+.container-btn-feedback{
 
-.btn-ranking:active {
-  box-shadow: 0.05em 0.05em;
-  transform: translate(0.05em, 0.05em);
 }
 
 .btn-play-again {
@@ -42,12 +30,13 @@
   border: 3px solid black;
   border-radius: 0.4em;
   box-shadow: 0.1em 0.1em;
-  font-family: inherit;
-  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
   font-weight: 900;
-  height: 2rem;
-  padding: 0;
+  padding: 0.5rem;
+  margin: 0 auto;
+  margin-top: 1rem;
   width: 7.5rem;
+  text-align: center;
 }
 
 .btn-play-again:hover {
@@ -58,5 +47,28 @@
 .btn-play-again:active {
   box-shadow: 0.05em 0.05em;
   cursor: pointer;
+  transform: translate(0.05em, 0.05em);
+}
+
+.btn-ranking {
+  background: #fbca1f;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  width: 7.5rem;
+  text-align: center;
+}
+
+.btn-ranking:hover {
+  box-shadow: 0.15em 0.15em;
+  transform: translate(-0.05em, -0.05em);
+}
+
+.btn-ranking:active {
+  box-shadow: 0.05em 0.05em;
   transform: translate(0.05em, 0.05em);
 }
