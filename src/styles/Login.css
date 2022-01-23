@@ -63,6 +63,7 @@
   border: 3px solid black;
   width: 90%;
   max-width: 25rem;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .label-nickname .label-email-address {
@@ -74,12 +75,9 @@
   width: 12rem;
 }
 
-.input-nickname{
+.input-nickname, .input-email-address{
   height: 2rem;
   width: 100%;
-}
-
-.input-email-address{
-  height: 2rem;
-  width: 100%;
+  background-color: rgb(57, 85, 166);
+  color: rgb(245, 245, 245);
 }

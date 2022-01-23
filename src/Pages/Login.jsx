@@ -74,7 +74,7 @@ export default function Login() {
 
   return (
     <div
-      className="bg-body card mb-5 p-3 position-relative rounded shadow
+      className="card mb-5 p-3 position-relative rounded shadow
       start-50 top-50 translate-middle login-main-box"
     >
       <div
@@ -96,8 +96,8 @@ export default function Login() {
           p-0 w-75"
         >
           <label
-            className="d-flex flex-column align-items-center p-0 justify-content-center
-            label-email-address"
+            className="d-flex flex-column align-items-center p-0
+            justify-content-center label-email-address"
             htmlFor="inputEmaill"
           >
             Email address
@@ -114,12 +114,12 @@ export default function Login() {
         </div>
         {/* INPUT NickName */}
         <div
-          className="align-items-center d-flex align-items-center justify-content-center
-          mb-3 p-0 w-100"
+          className="align-items-center d-flex align-items-center
+          justify-content-center mb-3 p-0 w-100"
         >
           <label
-            className="d-flex flex-column align-items-center p-0 justify-content-center
-            label-nickname"
+            className="d-flex flex-column align-items-center p-0
+            justify-content-center label-nickname"
             htmlFor="playerName"
           >
             NickName

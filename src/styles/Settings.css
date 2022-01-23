@@ -1,0 +1,40 @@
+@font-face {
+  font-family: NineTsukiRegular;
+  src: url(../font/NineTsukiRegular.ttf);
+}
+
+.setting-main-box {
+  font-family: NineTsukiRegular;
+  border: 3px solid black;
+  width: 90%;
+  max-width: 25rem;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.settings-tittle {
+  font-size: 3rem;
+}
+
+.form-settings {
+  width: 100%;
+  height: 100%;
+}
+
+.category-container, .difficulty-container, .type-conteiner{
+  width: 100%;
+  text-align: center;
+}
+
+.category-labe, .difficulty-label, .type-label{
+  align-items: center;
+  text-align: center;
+}
+
+.select-category, .select-difficulty, .select-type{
+  background-color: rgb(57, 85, 166);
+  color: rgb(245, 245, 245);
+  text-align: center;
+  cursor: inherit;
+  line-height: inherit;
+  font-size: 1rem;
+}

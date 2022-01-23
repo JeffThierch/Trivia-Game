@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header
       className="d-flex flex-row justify-content-between align-items-center
-      bg-primary text-white main-header ws-100"
+      bg-primary text-white main-header main-box-header"
     >
       <div
         className="d-flex flex-row align-items-center ms-2 bg-light
@@ -29,7 +29,7 @@ export default function Header() {
           data-testid="header-profile-picture"
         />
         <p
-          className="player-name text-dark mx-1 my-0 w-100 text-start align-middle"
+          className="text-dark h-100 player-name"
           data-testid="header-player-name"
         >
           { name }
@@ -37,16 +37,16 @@ export default function Header() {
       </div>
       <div
         className="d-flex flex-row align-items-center bg-light rounded-pill
-        me-2 player-score"
+        me-2 box-player-score"
       >
         <p
-          className="text-dark mx-0 my-0 h-100 w-50 text-start align-middle"
+          className="text-dark h-100 player-score"
         >
           Score
         </p>
         <p
           data-testid="header-score"
-          className="text-dark mx-0 my-0 h-100 w-50 text-start align-middle"
+          className="text-dark h-100 score"
         >
           { score }
         </p>

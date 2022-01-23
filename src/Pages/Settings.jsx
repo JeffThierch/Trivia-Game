@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { settingsDificulty, settingType } from '../helpers/data';
 import getCategorys from '../services/getCategorys';
 import { saveUserSettings } from '../actions';
+import '../styles/Settings.css';
 
 export default function Settings() {
   const [categorys, setCategorys] = useState([]);
@@ -53,25 +54,25 @@ export default function Settings() {
 
   return (
     <section
-      className=" bg-body card mb-5 p-3 position-relative
-        rounded shadow start-50 top-50 translate-middle w-75"
+      className="card mb-5 p-3 position-relative
+        rounded shadow start-50 top-50 translate-middle setting-main-box"
     >
-      <h1 data-testid="settings-title">Settings</h1>
+      <h1 data-testid="settings-title" className="settings-tittle">Settings</h1>
       <form
         className="align-items-center d-flex flex-column
-        justify-content-center m-2 p-2"
+        justify-content-center p-2 form-settings"
       >
         <div
           className="align-items-center d-flex justify-content-center
-          mb-3 p-0 w-75"
+          mb-3 p-0 category-container"
         >
           <label
             htmlFor="dropdown-category"
-            className="d-flex flex-column p-0 w-75"
+            className="d-flex flex-column p-0 w-100 category-label"
           >
             Select Category
             <select
-              className="form-select form-select-sm"
+              className="form-select form-select-sm select-category"
               id="dropdown-category"
               value={ category }
               onChange={ ({ target }) => setCategory(target.value) }
@@ -86,16 +87,16 @@ export default function Settings() {
         </div>
         <div
           className="align-items-center d-flex justify-content-center
-          mb-3 p-0 w-75"
+          mb-3 p-0 difficulty-container"
         >
           <label
             htmlFor="dropdown-dificulty"
-            className="d-flex flex-column p-0 w-75"
+            className="d-flex flex-column p-0 w-100 difficulty-label"
           >
             Select Difficulty
             <select
               id="dropdown-dificulty"
-              className="form-select form-select-sm"
+              className="form-select form-select-sm select-difficulty"
               value={ dificulty }
               onChange={ ({ target }) => setDificulty(target.value) }
             >
@@ -111,16 +112,16 @@ export default function Settings() {
         </div>
         <div
           className="align-items-center d-flex justify-content-center
-          mb-3 p-0 w-75"
+          mb-3 p-0 type-conteiner"
         >
           <label
             htmlFor="dropdown-type"
-            className="d-flex flex-column p-0 w-75"
+            className="d-flex flex-column p-0 w-100 type-label"
           >
             Select Type
             <select
               id="dropdown-type"
-              className="form-select form-select-sm"
+              className="form-select form-select-sm select-type"
               value={ type }
               onChange={ ({ target }) => setType(target.value) }
             >
@@ -134,8 +135,8 @@ export default function Settings() {
         </div>
         <div>
           <button
-            className={ `active btn btn-lg px-4 py-1 ${token
-              ? 'btnPlay' : 'btnConfig'}` }
+            className={ `active btn ${token
+              ? 'btn-play' : 'btn-config'}` }
             type="button"
             onClick={ saveSettings }
           >
