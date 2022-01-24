@@ -109,7 +109,7 @@ export default function Play() {
     const storage = JSON.parse(localStorage.getItem('ranking'));
     const playerStorage = storage.filter((player) => player.id === id);
     playerStorage[0].score += totalQuestionPoint;
-    dispatch(changeScoreInStore(storage[0].score));
+    dispatch(changeScoreInStore(playerStorage[0].score));
     const newStorage = storage.map((player) => {
       if (player.id === playerStorage[0].id) {
         return playerStorage[0];
@@ -204,7 +204,7 @@ export default function Play() {
                       `${showCorrectAnswers ? 'correct-answer' : ''} btn-option`
                     }
                   >
-                    { answer.answer }
+                    { htmlDecode(answer.answer) }
                   </button>
                 );
               }
@@ -221,7 +221,7 @@ export default function Play() {
                     `${showCorrectAnswers ? 'wrong-answer' : ''} btn-option`
                   }
                 >
-                  { answer.answer }
+                  { htmlDecode(answer.answer) }
                 </button>
               );
             })}
