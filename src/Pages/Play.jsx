@@ -11,6 +11,7 @@ import difficultyModifier from '../helpers/data';
 import NotFound from '../components/NotFound';
 import Ampola from '../img/ampola.png';
 import 'react-circular-progressbar/dist/styles.css';
+import htmlDecode from '../helpers/htmlDecode';
 
 export default function Play() {
   const NUMBER_OF_ANSWERS = 5;
@@ -133,9 +134,7 @@ export default function Play() {
       <Header />
       {quiz.length === 0 && wasFetched && <NotFound />}
       {quiz.length === NUMBER_OF_ANSWERS && currentQuestion < NUMBER_OF_ANSWERS && (
-        <section
-          className="main-box-play"
-        >
+        <section className="main-box-play">
           {/* Categoria */}
           <div
             className="question-container"
@@ -155,6 +154,7 @@ export default function Play() {
               alt="timer-ampola"
               className="timer-ampola"
             />
+            {/* Timer em formato de disco */}
             <CircularProgressbar
               className="timer-progress-bar"
               minValue={ 0 }
@@ -179,7 +179,9 @@ export default function Play() {
             <h3 className="question-title">
               {`Question ${currentQuestion + 1}/${NUMBER_OF_ANSWERS}`}
             </h3>
-            <p data-testid="question-text">{quiz[currentQuestion].question}</p>
+            <p data-testid="question-text">
+              {htmlDecode(quiz[currentQuestion].question)}
+            </p>
           </div>
           {/* Alternativas da API */}
           <div
@@ -207,7 +209,6 @@ export default function Play() {
                 );
               }
               indexOfWrongQuestions += 1;
-
               // Respostas erradas
               return (
                 <button
